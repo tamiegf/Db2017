@@ -1,7 +1,7 @@
 # Db2017
 Data base resources project
 
-# Backened System for Disaster Site resources Locator
+# Backened System for Disaster Site Resources Locator
 # Phase I- Conceptual Design
 
 
