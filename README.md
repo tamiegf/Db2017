@@ -24,6 +24,5 @@ The application is organized in three broad layers:
 The following software is required to run this application:
 1. Pyscopg2 - library to connect to PostgreSQL form Python
 2. Flask - web bases framework to implement the REST API.
-
-
-
+3. PostgreSQL - database engine
+4. PgAdmin3 - app to manage the databases 
