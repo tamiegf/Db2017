@@ -17,7 +17,15 @@ class purchaseDAO:
         result = dummyDB
         return result
 
-    def getPurchaseWithAllAttributes(self, reqId, purchaseDate, ptqy, uid):
+    def getPurchaseWithAllAttributes(self, reqId, purchaseDate, ptqy, uid, pid):
+        result = dummyDB
+        return result
+
+    def getPurchaseWithAllAttributesExceptPid(self, reqId, purchaseDate, ptqy, uid):
+        result = dummyDB
+        return result
+
+    def getPurchaseWithAllAttributesExceptUid(self, reqId, purchaseDate, ptqy, pid):
         result = dummyDB
         return result
 
@@ -26,6 +34,10 @@ class purchaseDAO:
         return result
 
     def getPurchaseByReqidAndPurchasedateAndPtqyAndUid(self, reqId, purchaseDate, ptqy, uid):
+        result = dummyDB
+        return result
+
+    def getPurchaseByReqidAndPurchasedateAndPtqyAndPid(self, reqId, purchaseDate, ptqy, pid):
         result = dummyDB
         return result
 
@@ -38,6 +50,10 @@ class purchaseDAO:
         return result
 
     def getPurchaseByReqidAndPurchasedateAndUid(self, reqId, purchaseDate, uid):
+        result = dummyDB
+        return result
+
+    def getPurchaseByReqidAndPurchasedateAndPid(self, reqId, purchaseDate, pid):
         result = dummyDB
         return result
 
@@ -54,6 +70,10 @@ class purchaseDAO:
         return result
 
     def getPurchaseByReqidAndUid(self, reqId, uid):
+        result = dummyDB
+        return result
+
+    def getPurchaseByReqidAndPid(self, reqId, pid):
         result = dummyDB
         return result
 

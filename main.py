@@ -123,7 +123,7 @@ def getRequestByreqId(reqId):
 
 ###############################################
 # All possibilities for request details entity
-@app.route('/DisasterApp/request/details')
+@app.route('/DisasterApp/request_details')
 def getAllRequestDetails():
     if not request.args:
         return requestDetailsHandler().getAllRequestDetails()
@@ -132,7 +132,7 @@ def getAllRequestDetails():
 
 # Get request details by RDid
 #Not enabled on phase 1
-@app.route('/DisasterApp/request/details/<int:RDid>')
+@app.route('/DisasterApp/request_details/<int:RDid>')
 def getRequestDetailsByreqId(RDid):
     return requestDetailsHandler().getRequestDetailsByRDid(RDid)
 

@@ -39,6 +39,7 @@ class purchaseHandler:
             return jsonify(Purchases=results_list)
 
     def searchPurchase(self, args):
+        pid = args.get("pid")
         reqId = args.get("reqId")
         purchaseDate = args.get("purchaseDate")
         ptqy = args.get("pqty")
@@ -46,18 +47,26 @@ class purchaseHandler:
         uid = args.get("uid")
         dao = purchaseDAO()
         purchase_list = []
-        if (len(args) == 5) and (reqId or purchaseDate or ptqy or rid or uid):
-            purchase_list = dao.getPurchaseWithAllAttributes(reqId, purchaseDate, ptqy, uid)
+        if (len(args) == 6) and (reqId or purchaseDate or ptqy or rid or uid or pid):
+            purchase_list = dao.getPurchaseWithAllAttributes(reqId, purchaseDate, ptqy, uid, pid)
+        elif (len(args) == 5) and (reqId or purchaseDate or ptqy or rid or uid):
+            purchase_list = dao.getPurchaseWithAllAttributesExceptPid(reqId, purchaseDate, ptqy, uid)
+        elif (len(args) == 5) and (reqId or purchaseDate or ptqy or rid or pid):
+            purchase_list = dao.getPurchaseWithAllAttributesExceptUid(reqId, purchaseDate, ptqy, pid)
         elif (len(args) == 4) and (reqId or purchaseDate or ptqy or rid):
             purchase_list = dao.getPurchaseByReqidAndPurchasedateAndPtqyAndRid(reqId, purchaseDate, ptqy, rid)
         elif (len(args) == 4) and (reqId or purchaseDate or ptqy or uid):
             purchase_list = dao.getPurchaseByReqidAndPurchasedateAndPtqyAndUid(reqId, purchaseDate, ptqy, uid)
+        elif (len(args) == 4) and (reqId or purchaseDate or ptqy or pid):
+            purchase_list = dao.getPurchaseByReqidAndPurchasedateAndPtqyAndPid(reqId, purchaseDate, ptqy, pid)
         elif (len(args) == 3) and (reqId or purchaseDate or ptqy):
             purchase_list = dao.getPurchaseByReqidAndPurchasedateAndPtqy(reqId, purchaseDate, ptqy)
         elif (len(args) == 3) and (reqId or purchaseDate or rid):
             purchase_list = dao.getPurchaseByReqidAndPurchasedateAndRid(reqId, purchaseDate, rid)
         elif (len(args) == 3) and (reqId or purchaseDate or uid):
             purchase_list = dao.getPurchaseByReqidAndPurchasedateAndUid(reqId, purchaseDate, uid)
+        elif (len(args) == 3) and (reqId or purchaseDate or pid):
+            purchase_list = dao.getPurchaseByReqidAndPurchasedateAndPid(reqId, purchaseDate, pid)
         elif (len(args) == 2) and (reqId or purchaseDate):
             purchase_list = dao.getPurchaseByReqidAndPurchasedate(reqId, purchaseDate)
         elif (len(args) == 2) and (reqId or ptqy):
@@ -66,6 +75,8 @@ class purchaseHandler:
             purchase_list = dao.getPurchaseByReqidAndRid(reqId, rid)
         elif (len(args) == 2) and (reqId or uid):
             purchase_list = dao.getPurchaseByReqidAndUid(reqId, uid)
+        elif (len(args) == 2) and (reqId or pid):
+            purchase_list = dao.getPurchaseByReqidAndPid(reqId, pid)
         elif (len(args) == 1) and reqId:
             purchase_list = dao.getPurchaseByReqid(reqId)
         elif (len(args) == 1) and purchaseDate:
@@ -76,6 +87,8 @@ class purchaseHandler:
             purchase_list = dao.getPurchaseByRid(rid)
         elif (len(args) == 1) and uid:
             purchase_list = dao.getPurchaseByReqid(uid)
+        elif (len(args) == 1) and pid:
+            purchase_list = [dao.getPurchaseByReqid(pid)]
         else:
             return jsonify(Error = "Malformed query string"), 400
         result_list = []

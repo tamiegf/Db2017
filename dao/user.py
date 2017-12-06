@@ -2,7 +2,7 @@
 # import psycopg2
 
 # dummyDB is a dummy array that simulates a database. This is for Phase1 purposes.
-dummyDB = [["1", "customer", "Jan Li", "PO BOX 231", "Mayaguez", "Mayaguez", "00680", "-14.45", "26.23"]]
+dummyDB = [["1", "customer", "Jan Li", "PO BOX 231", "Mayaguez", "Mayaguez", "00680", "-14.45", "26.23", "1"]]
 
 class userDAO:
 
@@ -17,15 +17,27 @@ class userDAO:
         result = dummyDB
         return result
 
-    def getUserWithAllAttributes(self, type, uName, address, city, county, zipcode, gpsLat, gpsLong):
+    def getUserWithAllAttributes(self, type, uName, address, city, county, zipcode, gpsLat, gpsLong, uid):
         result = dummyDB
         return result
 
-    def getUserByAllAttributesExceptGpsLong(self, type, uName, address, city, county, zipcode, gpsLat):
+    def getUserByAllAttributesExceptGpsLong(self, type, uName, address, city, county, zipcode, gpsLat, uid):
+        result = dummyDB
+        return result
+
+    def getUserWithAllAttributesExceptUid(self, utype, uName, address, city, region, zipcode, gpsLat, gpsLong):
         result = dummyDB
         return result
 
     def getUserByAllAttributesExceptGpsLat(self, type, uName, address, city, county, zipcode, gpsLong):
+        result = dummyDB
+        return result
+
+    def getUserWithAllAttributesExceptGpsLong(self, utype, uName, address, city, region, zipcode, gpsLat, gpsLong):
+        result = dummyDB
+        return result
+
+    def getUserByAllAttributesExceptUid(self, utype, uName, address, city, region, zipcode, uid):
         result = dummyDB
         return result
 
@@ -38,6 +50,10 @@ class userDAO:
         return result
 
     def getUserByAllAttributesExceptGpsLongAndZipcode(self, type, uName, address, city, county, gpsLat):
+        result = dummyDB
+        return result
+
+    def getUserByAllAttributesExceptGpsLongAndUid(self, utype, uName, address, city, region, uid):
         result = dummyDB
         return result
 
@@ -57,6 +73,10 @@ class userDAO:
         result = dummyDB
         return result
 
+    def getUserByAllAttributesExceptGpsLongAndCountyAndUid(self, utype, uName, address, city, uid):
+        result = dummyDB
+        return result
+
     def getUserBytypeAndUnameAndAddressAndCity(self, type, uName, address, city):
         result = dummyDB
         return result
@@ -70,6 +90,14 @@ class userDAO:
         return result
 
     def getUserBytypeAndUnameAndAddressAndGpsLat(self, type, uName, address, gpsLat):
+        result = dummyDB
+        return result
+
+    def getUserBytypeAndUnameAndAddressAndgpsLong(self, utype, uName, address, gpsLong):
+        result = dummyDB
+        return result
+
+    def getUserBytypeAndUnameAndAddressAndUid(self, utype, uName, address, uid):
         result = dummyDB
         return result
 
@@ -90,6 +118,14 @@ class userDAO:
         return result
 
     def getUserBytypeAndUnameAndGpsLong(self, type, uName, gpsLong):
+        result = dummyDB
+        return result
+
+    def getUserBytypeAndUnameAndUid(self, utype, uName, uid):
+        result = dummyDB
+        return result
+
+    def getUserBytypeAndUid(self, utype, uid):
         result = dummyDB
         return result
 

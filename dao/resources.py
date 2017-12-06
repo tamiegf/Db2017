@@ -17,14 +17,27 @@ class resourcesDAO:
         result = dummyDB
         return result
 
-    def getResourceWithAllAttributes(self, rName, rqty, cid, price, rdId):
+    def getResourceWithAllAttributes(self, rName, rqty, cid, price, rdId, rid):
         result = dummyDB
         return result
+
+    def getResourceWithAllAttributesExceptRid(self, rName, rqty, cid, price, rdId):
+        result = dummyDB
+        return result
+
+    def getResourceWithAllAttributesExceptRDid(self, rName, rqty, cid, price, rid):
+        result = dummyDB
+        return result
+
     def getResourceByRnameAndRqtyAndCidAndPrice(self, rName, rqty, cid, price):
         result = dummyDB
         return result
 
     def getResourceByRnameAndRqtyAndCidAndRdid(self, rName, rqty, cid, rdId):
+        result = dummyDB
+        return result
+
+    def getResourceByRnameAndRqtyAndCidAndRid(self, rName, rqty, cid, rid):
         result = dummyDB
         return result
 
@@ -40,6 +53,10 @@ class resourcesDAO:
         result = dummyDB
         return result
 
+    def getResourceByRnameAndRqtyAndRid(self, rName, rqty, rid):
+        result = dummyDB
+        return result
+
     def getResourceByRnameAndRqty(self, rName, rqty):
         result = dummyDB
         return result
@@ -49,6 +66,10 @@ class resourcesDAO:
         return result
 
     def getResourceByRnameAndPrice(self, rName, price):
+        result = dummyDB
+        return result
+
+    def getResourceByRnameAndRid(self, rName, rdId):
         result = dummyDB
         return result
 

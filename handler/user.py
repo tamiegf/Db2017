@@ -11,7 +11,7 @@ class userHandler:
         result['uName'] = row[2]
         result['address'] = row[3]
         result['city'] = row[4]
-        result['county'] = row[5]
+        result['region'] = row[5]
         result['zipCode'] = row[6]
         result['gpsLat'] = row[7]
         result['gpsLong'] = row[8]
@@ -39,6 +39,14 @@ class userHandler:
         result['RDid'] = row[5]
         return result
 
+    # Create a dictionary of request
+    def build_request_dict(self, row):
+        result = {}
+        result['reqId'] = row[0]
+        result['uid'] = row[1]
+        result['reqDate'] = row[2]
+        return result
+
     def getAllUsers(self):
         dao = userDAO()
         users_list = dao.getAllUsers()
@@ -49,6 +57,7 @@ class userHandler:
         return jsonify(Users=results_list)
 
     def searchUsers(self, args):
+        uid = args.get("uid")
         utype = args.get("utype")
         uName = args.get("uName")
         address = args.get("address")
@@ -59,18 +68,26 @@ class userHandler:
         gpsLong = args.get("gpsLong")
         dao = userDAO()
         user_list = []
-        if (len(args) == 8) and (utype or uName or address or city or region or zipcode or gpsLat or gpsLong):
-            user_list = dao.getUserWithAllAttributes(utype, uName, address, city, region, zipcode, gpsLat, gpsLong)
+        if (len(args) == 9) and (utype or uName or address or city or region or zipcode or gpsLat or gpsLong or uid):
+            user_list = dao.getUserWithAllAttributes(utype, uName, address, city, region, zipcode, gpsLat, gpsLong, uid)
+        elif (len(args) == 8) and (utype or uName or address or city or region or zipcode or gpsLat or gpsLong):
+            user_list = dao.getUserWithAllAttributesExceptUid(utype, uName, address, city, region, zipcode, gpsLat, gpsLong)
+        elif (len(args) == 8) and (utype or uName or address or city or region or zipcode or gpsLat or uid):
+            user_list = dao.getUserWithAllAttributesExceptGpsLong(utype, uName, address, city, region, zipcode, gpsLat, gpsLong)
         elif (len(args) == 7) and (utype or uName or address or city or region or zipcode or gpsLat):
             user_list = dao.getUserByAllAttributesExceptGpsLong(utype, uName, address, city, region, zipcode, gpsLat)
         elif (len(args) == 7) and (utype or uName or address or city or region or zipcode or gpsLong):
             user_list = dao.getUserByAllAttributesExceptGpsLat(utype, uName, address, city, region, zipcode, gpsLong)
+        elif(len(args) == 7) and (utype or uName or address or city or region or zipcode or uid):
+            user_list = dao.getUserByAllAttributesExceptUid(utype, uName, address, city, region, zipcode, uid)
         elif (len(args) == 6) and (utype or uName or address or city or region or zipcode):
             user_list = dao.getUserByAllAttributesExceptGpsLongAndGpsLat(utype, uName, address, city, region, zipcode)
         elif (len(args) == 6) and (utype or uName or address or city or region or gpsLong):
             user_list = dao.getUserByAllAttributesExceptZipcodeAndGpsLat(utype, uName, address, city, region, gpsLong)
         elif (len(args) == 6) and (utype or uName or address or city or region or gpsLat):
             user_list = dao.getUserByAllAttributesExceptGpsLongAndZipcode(utype, uName, address, city, region, gpsLat)
+        elif (len(args) == 6) and (utype or uName or address or city or region or uid):
+            user_list = dao.getUserByAllAttributesExceptGpsLongAndUid(utype, uName, address, city, region, uid)
         elif (len(args) == 5) and (utype or uName or address or city or region):
             user_list = dao.getUserByAllAttributesExceptGpsLongAndGpsLatAndZipcode(utype, uName, address, city, region)
         elif (len(args) == 5) and (utype or uName or address or city or gpsLat):
@@ -79,6 +96,8 @@ class userHandler:
             user_list = dao.getUserByAllAttributesExceptGpsLatAndCountyAndZipcode(utype, uName, address, city, gpsLong)
         elif (len(args) == 5) and (utype or uName or address or city or zipcode):
             user_list = dao.getUserByAllAttributesExceptGpsLongAndCountyAndGpsLat(utype, uName, address, city, zipcode)
+        elif (len(args) == 5) and (utype or uName or address or city or uid):
+            user_list = dao.getUserByAllAttributesExceptGpsLongAndCountyAndUid(utype, uName, address, city, uid)
         elif (len(args) == 4) and (utype or uName or address or city):
             user_list = dao.getUserBytypeAndUnameAndAddressAndCity(utype, uName, address, city)
         elif (len(args) == 4) and (utype or uName or address or zipcode):
@@ -88,7 +107,9 @@ class userHandler:
         elif (len(args) == 4) and (utype or uName or address or gpsLat):
             user_list = dao.getUserBytypeAndUnameAndAddressAndGpsLat(utype, uName, address, gpsLat)
         elif (len(args) == 4) and (utype or uName or address or gpsLong):
-            user_list = dao.getUserBytypeAndUnameAndAddressAndCity(utype, uName, address, gpsLong)
+            user_list = dao.getUserBytypeAndUnameAndAddressAndgpsLong(utype, uName, address, gpsLong)
+        elif (len(args) == 4) and (utype or uName or address or uid):
+            user_list = dao.getUserBytypeAndUnameAndAddressAndUid(utype, uName, address, uid)
         elif (len(args) == 3) and (utype or uName or address):
             user_list = dao.getUserBytypeAndUnameAndAddress(utype, uName, address)
         elif (len(args) == 3) and (utype or uName or city):
@@ -101,6 +122,8 @@ class userHandler:
             user_list = dao.getUserBytypeAndUnameAndGpsLat(utype, uName, gpsLat)
         elif (len(args) == 3) and (utype or uName or gpsLong):
             user_list = dao.getUserBytypeAndUnameAndGpsLong(utype, uName, gpsLong)
+        elif (len(args) == 3) and (utype or uName or uid):
+            user_list = dao.getUserBytypeAndUnameAndUid(utype, uName, uid)
         elif (len(args) == 2) and (utype or uName):
             user_list = dao.getUserBytypeAndUname(utype, uName)
         elif (len(args) == 2) and (utype or address):
@@ -115,6 +138,8 @@ class userHandler:
             user_list = dao.getUserBytypeAndGpsLat(utype, gpsLat)
         elif (len(args) == 2) and (utype or gpsLong):
             user_list = dao.getUserBytypeAndGpsLong(utype, gpsLong)
+        elif (len(args) == 2) and (utype or uid):
+            user_list = dao.getUserBytypeAndUid(utype, uid)
         elif (len(args) == 1) and utype:
             user_list = dao.getUserByType(utype)
         elif (len(args) == 1) and uName:
@@ -131,6 +156,8 @@ class userHandler:
             user_list = dao.getUserByGpsLat(gpsLat)
         elif (len(args) == 1) and gpsLong:
             user_list = dao.getUserByGpsLong(gpsLong)
+        elif (len(args) == 1) and uid:
+            user_list = [dao.getUserByUid(uid)]
         else:
             return jsonify(Error = "Malformed query string"), 400
         result_list = []

@@ -39,6 +39,7 @@ class resourcesHandler:
         return jsonify(Resources=results_list)
 
     def searchResources(self, args):
+        rid = args.get("rid")
         rName = args.get("rName")
         rQty = args.get("rQty")
         cid = args.get("cid")
@@ -46,18 +47,26 @@ class resourcesHandler:
         RDid = args.get("RDid")
         dao = resourcesDAO()
         resource_list = []
-        if (len(args) == 5) and (rName or rQty or cid or price or RDid):
-            resource_list = dao.getResourceWithAllAttributes(rName, rQty, cid, price, RDid)
+        if(len(args) == 6) and (rName or rQty or cid or price or RDid or rid):
+            resource_list = dao.getResourceWithAllAttributes(rName, rQty, cid, price, RDid, rid)
+        elif (len(args) == 5) and (rName or rQty or cid or price or RDid):
+            resource_list = dao.getResourceWithAllAttributesExceptRid(rName, rQty, cid, price, RDid)
+        elif (len(args) == 5) and (rName or rQty or cid or price or rid):
+            resource_list = dao.getResourceWithAllAttributesExceptRDid(rName, rQty, cid, price, rid)
         elif (len(args) == 4) and (rName or rQty or cid or price):
             resource_list = dao.getResourceByRnameAndRqtyAndCidAndPrice(rName, rQty, cid, price)
         elif (len(args) == 4) and (rName or rQty or cid or RDid):
             resource_list = dao.getResourceByRnameAndRqtyAndCidAndRdid(rName, rQty, cid, RDid)
+        elif (len(args) == 4) and (rName or rQty or cid or RDid):
+            resource_list = dao.getResourceByRnameAndRqtyAndCidAndRid(rName, rQty, cid, rid)
         elif (len(args) == 3) and (rName or rQty or cid):
             resource_list = dao.getResourceByRnameAndRqtyAndCid(rName, rQty, cid)
         elif (len(args) == 3) and (rName or rQty or price):
             resource_list = dao.getResourceByRnameAndRqtyAndPrice(rName, rQty, price)
         elif (len(args) == 3) and (rName or rQty or RDid):
             resource_list = dao.getResourceByRnameAndRqtyAndRdid(rName, rQty, RDid)
+        elif (len(args) == 3) and (rName or rQty or rid):
+            resource_list = dao.getResourceByRnameAndRqtyAndRid(rName, rQty, rid)
         elif (len(args) == 2) and (rName or rQty):
             resource_list = dao.getResourceByRnameAndRqty(rName, rQty)
         elif (len(args) == 2) and (rName or cid):
@@ -76,6 +85,8 @@ class resourcesHandler:
             resource_list = dao.getResourceByPrice(price)
         elif (len(args) == 1) and RDid:
             resource_list = dao.getResourceByRdid(RDid)
+        elif (len(args) == 1) and rid:
+            resource_list = [dao.getResourcesByRid(rid)]
         else:
             return jsonify(Error = "Malformed query string"), 400
         result_list = []
