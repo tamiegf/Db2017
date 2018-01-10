@@ -11,7 +11,7 @@ a REST API. The database engine is relational and our project is implemented in 
 The user will be able to browse categories for resoursece, search for specific items, specify who is supplying items,
 and who needs the items.
 
-The application manages data from six tables:
+The application manages data from eleven tables:
 1. User- The person who either is the administrator of the database system, a person who needs resources or a person who supplies resources
 2. Request- The requests made by a user for one or more resources.
 3. Resources- Resources that are being requested and shows the availability of the requested resources
@@ -32,7 +32,7 @@ The application is organized in three broad layers:
              based on the type pf request for a data. They provide the appropriate HTTP response code.
 3. DAOs- Data Access Objects (DAOs) take care of moving data in and out of the database engine by making SQL queries
          and wrapping the results in the objects and object list of appropiate types.
-         For phase 1, all the DAOs are hardwired.
+         For phase 2, all the DAOs are connected to a database.
 
 ## Requirements
 
