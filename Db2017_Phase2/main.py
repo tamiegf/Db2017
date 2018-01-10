@@ -1,17 +1,17 @@
 from flask import Flask, jsonify, request
 
-from handler.user import userHandler
-from handler.user_address import userAddressHandler
-from handler.purchase import purchaseHandler
-from handler.resource_location import resourceLocationHandler
-from handler.category import categoryHandler
-from handler.resources import resourcesHandler
-from handler.request import requestHandler
-from handler.request_details import requestDetailsHandler
-from handler.creditCard import creditCardHandler
-from handler.Discount import DiscountHandler
-from handler.Does import DoesHandler
-from handler.Sales import SalesHandler
+from Db2017_Phase2.handler.user import userHandler
+from Db2017_Phase2.handler.user_address import userAddressHandler
+from Db2017_Phase2.handler.purchase import purchaseHandler
+from Db2017_Phase2.handler.resource_location import resourceLocationHandler
+from Db2017_Phase2.handler.category import categoryHandler
+from Db2017_Phase2.handler.resources import resourcesHandler
+from Db2017_Phase2.handler.request import requestHandler
+from Db2017_Phase2.handler.request_details import requestDetailsHandler
+from Db2017_Phase2.handler.creditCard import creditCardHandler
+from Db2017_Phase2.handler.Discount import DiscountHandler
+from Db2017_Phase2.handler.Does import DoesHandler
+from Db2017_Phase2.handler.Sales import SalesHandler
 
 
 app = Flask(__name__)
