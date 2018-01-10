@@ -1,5 +1,5 @@
 from flask import jsonify
-from dao.resources import resourcesDAO
+from Db2017_Phase2.dao.resources import resourcesDAO
 
 class resourcesHandler:
 

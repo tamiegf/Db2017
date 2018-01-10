@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from dao.Sales import SalesDAO
+from Db2017_Phase2.dao.Sales import SalesDAO
 
 
 class SalesHandler:

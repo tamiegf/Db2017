@@ -1,4 +1,4 @@
-from config.db_config import db_config
+from Db2017_Phase2.config.db_config import db_config
 import psycopg2
 
 class resourceLocationDAO:

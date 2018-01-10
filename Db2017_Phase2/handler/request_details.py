@@ -1,5 +1,5 @@
 from flask import jsonify
-from dao.request_details import requestDetailsDAO
+from Db2017_Phase2.dao.request_details import requestDetailsDAO
 
 class requestDetailsHandler:
 

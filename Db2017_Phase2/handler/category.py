@@ -1,5 +1,5 @@
 from flask import jsonify
-from dao.category import categoryDAO
+from Db2017_Phase2.dao.category import categoryDAO
 
 class categoryHandler:
 

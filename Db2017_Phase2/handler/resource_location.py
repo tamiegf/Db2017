@@ -1,5 +1,5 @@
 from flask import jsonify
-from dao.resource_location import resourceLocationDAO
+from Db2017_Phase2.dao.resource_location import resourceLocationDAO
 
 class resourceLocationHandler:
 

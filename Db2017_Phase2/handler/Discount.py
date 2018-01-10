@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from dao.Discount import DiscountDAO
+from Db2017_Phase2.dao.Discount import DiscountDAO
 
 
 class DiscountHandler:

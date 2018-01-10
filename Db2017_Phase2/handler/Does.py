@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from dao.Does import DoesDAO
+from Db2017_Phase2.dao.Does import DoesDAO
 
 
 class DoesHandler:

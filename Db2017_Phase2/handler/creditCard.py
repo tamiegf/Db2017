@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from dao.creditCard import CreditCardDAO
+from Db2017_Phase2.dao.creditCard import CreditCardDAO
 
 
 class creditCardHandler:
