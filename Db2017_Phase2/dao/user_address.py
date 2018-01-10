@@ -4,7 +4,7 @@ import psycopg2
 class userAddressDAO:
 
     def __init__(self):
-        connection_url = "dbname=%s user=%s password=%s" % (db_config['dbname'],
+        connection_url = "dbname=%s user=%s password=%s host='localhost'" % (db_config['dbname'],
                                                             db_config['user'],
                                                             db_config['psswd'])
         self.conn = psycopg2._connect(connection_url)
