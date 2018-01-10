@@ -5,7 +5,7 @@ Data Base resources project
 # Phase II
 
 
-This is the phase 1 of a backend application used to manage resources on a Disaster Site using Flask.
+This is the phase 2 of a backend application used to manage resources on a Disaster Site using Flask.
 The data un the application is managed by a relational database system, and exposed to client applications through
 a REST API. The database engine is relational and our project is implemented in Python.
 The user will be able to browse categories for resoursece, search for specific items, specify who is supplying items,
