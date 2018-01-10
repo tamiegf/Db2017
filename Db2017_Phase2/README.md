@@ -19,8 +19,8 @@ The application manages data from six tables:
 5. Request Details- has all the requests made by users with all the details of each request, including date requested, quantity and status.
 6. Purchase- Shows the purchases made by each user, including purchase date, resources purchased or reserved, quantity and requests.
 7. User Address- Address where the user is located at.
-8. Credit Card- Holds the credit card of every user.
-9. Sales - Displays the sales made.
+8. Credit Card- Holds the credit card of every user registered in the database.
+9. Sales - Displays the record of sales made.
 10. Resource Location- Shows the address where a resource is located at.
 11. Discount- Contains the discounts that can be made to the price of the resources.
 
