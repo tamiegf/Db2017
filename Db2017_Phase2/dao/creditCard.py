@@ -76,15 +76,7 @@ class CreditCardDAO:
         self.conn.commit ()
         return uid
     
-    ### Delete
-    ### No es necesario implementarla pero se hizo por si acaso 
-    
-    def delete(self, uid):
-        cursor = self.conn.cursor ()
-        query = "delete from creditCard where uid = %s;"
-        cursor.execute (query, (uid,))
-        self.conn.commit ()
-        return uid
+
     
 
 
