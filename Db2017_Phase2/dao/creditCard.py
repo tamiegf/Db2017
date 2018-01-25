@@ -34,21 +34,6 @@ class CreditCardDAO:
         cursor.execute(query, (ccNumber, cvv, ccExpirationDate,))
         result = cursor.fetchone()
         return result
-    #def getCreditCardByAllAttributesExceptCCID(self, ccNumber, cvv, ccExpirationDate):
-      #  result = dummyDB
-       # return result
-
-   # def getCreditCardByAllAttributesExceptExpirationDate(self,ccid, ccNumber, cvv):
-      #  result = dummyDB
-       # return result
-
-   # def getCreditCardByAllAttributesExceptCVV(self, ccid, ccNumber, ccExpirationDate):
-    #    result = dummyDB
-     #   return result
-
-   # def getCreditCardByAllAttributesExceptccNumber(self, ccid, cvv, ccExpirationDate):
-    #    result = dummyDB
-      #  return result
 
     def getCreditCardByccNumber(self, ccNumber):
         cursor = self.conn.cursor()
@@ -77,5 +62,36 @@ class CreditCardDAO:
         cursor.execute(query, (ccid,))
         result = cursor.fetchone()
         return result
+    
+    ########################################################################
+    ###### Metodos de insert y Update de Credit Card#######################
+    
+    
+    ####Insert a la tabla de CreditCard
+    def insert(self, uid, ccNumber, cvv, ccExpirationDate, sale):
+        cursor = self.conn.cursor ()
+        query = "insert into creditCard(uid,ccNumber,ccv,ccExpirationDate,sale) values (%s, %s, %s, %s, %s);"
+        cursor.execute (query,(uid, ccNumber, cvv, ccExpirationDate, sale,))
+        self.conn.commit ()
+        return uid  
+    
+   ####Update a la tabla de creditCard 
+    def update(self, uid, ccNumber, cvv, ccExpirationDate, sale):
+        cursor = self.conn.cursor ()
+        query = "update creditCard set ccNumber = %s,cvv = %s,ccExpirationDate = %s,sale = %s where uid = %s;"
+        cursor.execute (query, (ccNumber, cvv, ccExpirationDate, sale, uid,))
+        self.conn.commit ()
+        return uid
+    
+    ### Delete
+    ### No es necesario implementarla pero se hizo por si acaso 
+    
+    def delete(self, uid):
+        cursor = self.conn.cursor ()
+        query = "delete from creditCard where uid = %s;"
+        cursor.execute (query, (uid,))
+        self.conn.commit ()
+        return uid
+    
 
 
