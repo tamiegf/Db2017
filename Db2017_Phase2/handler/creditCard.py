@@ -13,17 +13,19 @@ class creditCardHandler:
         result['cvv'] = row[3]
         result['ccExpirationDate']= row[4]
         return result
+  
+###############################################################################
+################# ADDED Jan 24 ##################################
+    def build_paymentinfo_dict2(self,uid,ccnumber,ccv,validate,expdate):
+        result = {}
+        result['uid'] = uid
+        result['ccNumber'] = ccNumber
+        result['cvv'] = cvv
+        result['ccExpirationDate'] = ccExpirationDate
+        return result
 
-        #################### POST METHODS #############################################
-
-    def insertCreditCard(self, form):
-        # No hay que hacerlo para esta fase
-        pass
-
-        ###############################################################################
-
-        #################### POST METHODS #############################################
-
+#############################################################################################
+#################### Get Methods##########################################################
 
     def getAllCreditCard(self):
         dao = CreditCardDAO()
@@ -86,3 +88,53 @@ class creditCardHandler:
         else:
             creditCard = self.build_creditCard_dict(row)
         return jsonify(creditCard=creditCard)
+    
+    
+    ######################ADDED JAN 24##################################################
+    ##################### POST METHODS###################################################
+    
+    
+    ################# INSERT
+        def insertCreditCard(self, row):
+        dao = CreditCardDAO ()
+        if len (row) != 5:
+            return jsonify (Error="Malformed query string"), 400
+        else:
+            uid = row['uid']
+            ccNumber = row['ccNumber']
+            cvv = row['cvv']
+            ccExpirationDate = row['ccExpirationDate']
+          
+
+            if uid and ccNumber and cvv and ccExpirationDate:
+                dao.insert (uid, ccNumber, cvv, ccExpirationDate)
+                result = self.build_paymentinfo_dict2 (uid,ccNumber,cvv,ccExpirationDate)
+                return jsonify (User=result), 201
+            else:
+                return jsonify (Error="Unable to insert"), 400
+            
+            
+            
+###################### Update
+    def updateCreditCard(self, uid, row):
+        dao = CreditCardDAO ()
+        if not dao.getPaymentInfoByUserID (uid):
+            return jsonify (Error="Malformed query string"), 400
+        else:
+            uid = row['uid']
+            ccNumber = row['ccnumber']
+            cvv = row['cvv']
+            ccExpirationDate = row['ccExpirationDate']
+            
+
+            if uid and ccNumber and cvv and ccExpirationDate:
+                dao.update (uid, ccNumber, cvv, ccExpirationDate)
+                result = self.build_paymentinfo_dict2 (uid, ccNumber, cvv, ccExpirationDate)
+                return jsonify (User=result), 201
+            else:
+                return jsonify (Error="Unable to update credit card details"), 400
+
+
+    
+    
+    
