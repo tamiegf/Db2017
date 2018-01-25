@@ -31,7 +31,7 @@ create table purchase(pid serial primary key, pdate date, pqty integer, rdid int
 
 --JESIELY
 --Credit Card table
-create table creditcard(ccid serial primary key, uid integer references users(uid), ccNumber varchar(19), cvv smallint, ccExpirationDate date, sale boolean);
+create table creditcard(ccid serial primary key, uid integer references users(uid), ccNumber varchar(19), cvv smallint, ccExpirationDate date);
 
 --Discount table
 create table discount(did serial primary key, dPercent float(2), stackable boolean, rid integer references Resources(rid));
