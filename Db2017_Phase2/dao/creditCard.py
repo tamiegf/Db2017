@@ -56,23 +56,23 @@ class CreditCardDAO:
         result = cursor.fetchone()
         return result
     
-    ########################################################################
+    ####################Added Jan 24####################################################
     ###### Metodos de insert y Update de Credit Card#######################
     
     
     ####Insert a la tabla de CreditCard
-    def insert(self, uid, ccNumber, cvv, ccExpirationDate, sale):
+    def insert(self, uid, ccNumber, cvv, ccExpirationDate):
         cursor = self.conn.cursor ()
-        query = "insert into creditCard(uid,ccNumber,ccv,ccExpirationDate,sale) values (%s, %s, %s, %s, %s);"
-        cursor.execute (query,(uid, ccNumber, cvv, ccExpirationDate, sale,))
+        query = "insert into creditCard(uid,ccNumber,ccv,ccExpirationDate) values (%s, %s, %s, %s);"
+        cursor.execute (query,(uid, ccNumber, cvv, ccExpirationDate,))
         self.conn.commit ()
         return uid  
     
    ####Update a la tabla de creditCard 
-    def update(self, uid, ccNumber, cvv, ccExpirationDate, sale):
+    def update(self, uid, ccNumber, cvv, ccExpirationDate):
         cursor = self.conn.cursor ()
-        query = "update creditCard set ccNumber = %s,cvv = %s,ccExpirationDate = %s,sale = %s where uid = %s;"
-        cursor.execute (query, (ccNumber, cvv, ccExpirationDate, sale, uid,))
+        query = "update creditCard set ccNumber = %s, cvv = %s, ccExpirationDate = %s, where uid = %s;"
+        cursor.execute (query, (ccNumber, cvv, ccExpirationDate, uid,))
         self.conn.commit ()
         return uid
     
