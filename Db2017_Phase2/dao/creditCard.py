@@ -8,13 +8,6 @@ class CreditCardDAO:
                                                                                db_config['psswd'])
         self.conn = psycopg2._connect(connection_url)
 
-
-################################POST METHODS###########################################
-    def insert(self):
-        # No hay que hacer esta parte para esta fase
-        pass
-######################################################################################
-
 #############################GET METHODS#############################################
 
     def getAllCategory(self):
