@@ -278,8 +278,27 @@ def getOrderByClientSearch():
 @app.route('/DisasterApp/creditCard', methods=['GET', 'POST'])
 def getAllCreditCards():
     if request.method == 'POST':
-        #return userAddressrHandler().insertCreditCard(request.form)
-        pass
+###############################################################################        
+###########################ADDED JAN 24
+#############################################################################
+        result = {}
+        result['uid'] = request.args.get ('uid')
+        result['ccNumber'] = request.args.get ('ccNumber')
+        result['cvv'] = request.args.get ('cvv')
+        result['ccExpirationDate'] = request.args.get ('ccExpirationDate')
+        return creditCardHandler().insertCreditCard(result)
+        #########End of POST 
+
+    elif request.method == 'PUT':
+        result = {}
+        result['uid'] = request.args.get ('uid')
+        result['ccNumber'] = request.args.get ('ccNumber')
+        result['cvv'] = request.args.get ('cvv')
+        result['ccExpirationDate'] = request.args.get ('ccExpirationDate')
+        return creditCardHandler().updateCreditCard(result)
+        #########End of PUT
+ #####################################End of modification
+#pass
     else:
         if not request.args:
             return creditCardHandler().getAllCreditCard()
@@ -300,6 +319,7 @@ def getCreditCardByccNumber(ccNumber):
 @app.route('/DisasterApp/creditCard/<int:ccExpirationDate>', methods=['GET', 'POST'])
 def getCreditCardByExpirationDate(ccExpirationDate):
     return creditCardHandler().getCreditCardByExpirationDate(ccExpirationDate)
+
 
 ################################################################################
 
